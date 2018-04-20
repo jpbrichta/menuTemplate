@@ -23,6 +23,12 @@ size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Button")
 
+# Define text
+fontObj = pygame.font.Font('freesansbold.ttf', 32)
+textSurfaceObj = fontObj.render('Hello world!', True, BLACK) 
+textRectObj = textSurfaceObj.get_rect()
+textRectObj.center = (200, 150)
+
 # This loop will continue until the user exits the game
 carryOn = True
 
@@ -63,6 +69,9 @@ while carryOn:
 
     # Red button
     pygame.draw.rect(screen, RED, (SCREENWIDTH*2/3-50, SCREENHEIGHT/2, 100, 50))
+
+    # Display Text
+    screen.blit(textSurfaceObj, textRectObj)
 
     # Update the screen with queued shapes
     pygame.display.flip()

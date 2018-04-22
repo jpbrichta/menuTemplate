@@ -1,4 +1,4 @@
-# Menu template with button class
+# Menu template with button class and basic menu navigation
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
 
 import pygame, sys
@@ -61,33 +61,49 @@ class Button():
         """Runs a function when clicked"""
         self.call_back_()
 
-
-def my_great_function():
+def my_shell_function():
     """A generic function that prints something in the shell"""
-    print("Great! " * 5)
+    print('Fire the nukes!')
 
+def my_next_function():
+    """A function that advances to the next level"""
+    global level
+    level += 1
+
+def my_previous_function():
+    """A function that retreats to the previous level"""
+    global level
+    level -= 1
 
 def my_quit_function():
     """A function that will quit the game and close the pygame window"""
     pygame.quit()
     sys.exit()
 
-def mousebuttondown():
+def mousebuttondown(level):
     """A function that checks which button was pressed"""
     pos = pygame.mouse.get_pos()
-    for button in buttons:
-        if button.rect.collidepoint(pos):
-            button.call_back()
+    if level == 1:
+        for button in level1_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
+    elif level == 2:
+        for button in level2_buttons:
+            if button.rect.collidepoint(pos):
+                button.call_back()
 
+level = 1
 carryOn = True
 clock = pygame.time.Clock()
 
-#create button objects and store in buttons list
-button_01 = Button("Great!", (SCREENWIDTH/2, SCREENHEIGHT/3), my_great_function)
-button_02 = Button("Quit", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_quit_function, bg=(50, 200, 20))
-buttons = [button_01, button_02]
+#create button objects
+button_01 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT/3), my_next_function)
+button_02 = Button("Previous", (SCREENWIDTH/2, SCREENHEIGHT/3), my_previous_function)
+button_03 = Button("Quit", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_quit_function, bg=(50, 200, 20))
 
-
+#arrange button groups depending on level
+level1_buttons = [button_01, button_03]
+level2_buttons = [button_02, button_03]
 
 #---------Main Program Loop----------
 while carryOn:
@@ -96,7 +112,7 @@ while carryOn:
         if event.type == pygame.QUIT: # Player clicked close button
             carryOn = False
         elif event.type == pygame.MOUSEBUTTONDOWN: # Player clicked the mouse
-            mousebuttondown()
+            mousebuttondown(level)
 
     # --- Game logic goes here
 
@@ -106,8 +122,12 @@ while carryOn:
     screen.fill(WHITE)
 
     # Draw buttons
-    for button in buttons:
-        button.draw()
+    if level == 1:
+        for button in level1_buttons:
+            button.draw()
+    elif level == 2:
+        for button in level2_buttons:
+            button.draw()
 
     # Update the screen with queued shapes
     pygame.display.flip()
@@ -116,3 +136,4 @@ while carryOn:
     clock.tick(60)
 
 pygame.quit()
+

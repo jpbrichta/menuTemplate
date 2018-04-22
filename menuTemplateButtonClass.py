@@ -17,7 +17,8 @@ size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
 
 class Button():
-    """This is a class for a generic button
+    """This is a class for a generic button.
+    
        txt = text on the button
        location = (x,y) coordinates of the button's centre
        action = name of function to run when button is pressed

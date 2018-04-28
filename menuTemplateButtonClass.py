@@ -1,4 +1,4 @@
-# Menu template with button class
+# Menu template with button class and basic menu navigation
 # Adapted from http://www.dreamincode.net/forums/topic/401541-buttons-and-sliders-in-pygame/
 
 import pygame, sys
@@ -17,7 +17,7 @@ size = (SCREENWIDTH, SCREENHEIGHT)
 screen = pygame.display.set_mode(size)
 
 class Button():
-    """This is a class for a generic button
+    """This is a class for a generic button.
        txt = text on the button
        location = (x,y) coordinates of the button's centre
        action = name of function to run when button is pressed
@@ -101,10 +101,9 @@ button_01 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT/3), my_next_function)
 button_02 = Button("Previous", (SCREENWIDTH/2, SCREENHEIGHT/3), my_previous_function)
 button_03 = Button("Quit", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_quit_function, bg=(50, 200, 20))
 
+#arrange button groups depending on level
 level1_buttons = [button_01, button_03]
 level2_buttons = [button_02, button_03]
-
-
 
 #---------Main Program Loop----------
 while carryOn:

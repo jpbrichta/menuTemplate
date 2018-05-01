@@ -18,7 +18,6 @@ screen = pygame.display.set_mode(size)
 
 class Button():
     """This is a class for a generic button.
-    
        txt = text on the button
        location = (x,y) coordinates of the button's centre
        action = name of function to run when button is pressed
@@ -97,7 +96,7 @@ level = 1
 carryOn = True
 clock = pygame.time.Clock()
 
-#create button objects
+#create button objects and store in buttons list
 button_01 = Button("Next", (SCREENWIDTH/2, SCREENHEIGHT/3), my_next_function)
 button_02 = Button("Previous", (SCREENWIDTH/2, SCREENHEIGHT/3), my_previous_function)
 button_03 = Button("Quit", (SCREENWIDTH/2, SCREENHEIGHT*2/3), my_quit_function, bg=(50, 200, 20))
@@ -137,4 +136,3 @@ while carryOn:
     clock.tick(60)
 
 pygame.quit()
-
